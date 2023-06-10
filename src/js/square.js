@@ -1,7 +1,15 @@
-export class Square {
-  container;
+import { renderTooltip } from './tooltip';
+import { createElementNode } from './utils';
 
-  constructor(container) {}
+export const squareClickHandler = (container, data) => {
+  return function (_evt) {
+    renderTooltip(container, data);
+  };
+};
 
-  getElement() {}
-}
+export const createSquare = (color = 0, data) => {
+  const square = createElementNode(`<li class='squares__item' data-color="${color}"></li>`);
+  square.addEventListener('click', squareClickHandler(square, data));
+
+  return square;
+};

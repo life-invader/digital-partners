@@ -1,5 +1,3 @@
-export const Api = 'https://dpg.gg/test/calendar.json';
-
 export const MONTHS = [
   'January',
   'February',
@@ -16,11 +14,11 @@ export const MONTHS = [
 ];
 
 export const DAYS = [
+  'Воскресенье',
   'Понедельник',
   'Вторник',
   'Среда',
   'Четверг',
   'Пятница',
   'Суббота',
-  'Воскресенье',
 ];

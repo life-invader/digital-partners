@@ -1,21 +1,27 @@
-/* Article - https://bitsofco.de/github-contribution-graph-css-grid/ */
-
 /* Variables */
 :root {
   --square-size: 15px;
-  --square-gap: 5px;
+  --square-gap: 2px;
   --week-width: calc(var(--square-size) + var(--square-gap));
 }
 
 /* Common */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+  color: #959494;
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ul, ol {
@@ -33,18 +39,26 @@ ul, ol {
 
 .squares {
   grid-area: squares;
+
+  display: grid;
+  gap: 2px;
+  grid-template-rows: repeat(7, var(--square-size));
+  grid-auto-flow: column;
+  grid-auto-columns: var(--square-size);
 }
 
 .graph {
-  display: inline-grid;
+  display: grid;
   grid-template-areas:
-    "empty months"
+    "_ months"
     "days squares";
   grid-template-columns: auto 1fr;
-  grid-gap: 10px;
+  gap: 5px;
+
+  padding: 20px;
+  border: 1px #e1e4e8 solid;
 }
 
-/* Months */
 .months {
   display: grid;
   grid-template-columns: calc(var(--week-width) * 4)
@@ -74,68 +88,59 @@ ul, ol {
   ;
 }
 
-.days,
-.squares {
-  display: grid;
-  grid-gap: var(--square-gap);
-  grid-template-rows: repeat(7, var(--square-size));
-}
-
-.squares {
-  grid-auto-flow: column;
-  grid-auto-columns: var(--square-size);
-}
-
-.graph {
-  padding: 20px;
-  border: 1px #e1e4e8 solid;
-  margin: 20px;
-}
-
-.days li:nth-child(odd) {
+.days__item--hidden {
   visibility: hidden;
 }
 
-.squares li {
+.squares__item {
   background-color: #EDEDED;
   outline: 1px solid transparent;
   position: relative;
   transition: all .2s;
 }
 
-.squares li:hover {
+.squares__item--active {
+  outline: 1px solid rgba(0, 0, 0, 0.9);
+}
+
+.squares__item:hover {
   outline: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 /* Painting levels */
-.squares li[data-level="1"] {
+.squares__item[data-color="1"] {
   background-color: #ACD5F2;
 }
 
-.squares li[data-level="2"] {
+.squares li[data-color="2"] {
   background-color: #7FA8C9;
 }
 
-.squares li[data-level="3"] {
+.squares li[data-color="3"] {
   background-color: #527BA0;
 }
 
-.squares li[data-level="4"] {
+.squares li[data-color="4"] {
   background-color: #254E77;
 }
 
 /* Tooltip */
-
 .tooltip {
   position: absolute;
   bottom: calc(15px + 6px);
   transform: translateX(calc(-50% + 7.5px));
   width: 145px;
-  min-height: 42px;
   padding: 5px 9px;
   color: #fff;
   background-color: #000;
   text-align: center;
   border-radius: 3px;
   z-index: 10;
+}
+
+.tooltip__date {
+  color: #7c7c7c;
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 4px;
 }

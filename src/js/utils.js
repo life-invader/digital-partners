@@ -16,7 +16,7 @@ export function formatDateString(dateString) {
   const year = date.getFullYear();
   const month = MONTHS[date.getMonth()];
   const day = date.getDate();
-  const weekDay = DAYS[date.getDay() - 1];
+  const weekDay = DAYS[date.getDay()];
 
   return `${weekDay}, ${month} ${day}, ${year}`;
 }
