@@ -1,32 +1,34 @@
-import moment from 'moment';
 import './style.css';
 
 const squares = document.querySelector('.squares');
 
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+const DAYS = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+
 const fetchData = async () => {
   const response = await fetch('https://dpg.gg/test/calendar.json');
   const data = await response.json();
-  console.log(data);
 
   return data;
 };
 
-const columns = 51;
-const days = 357;
-const currentDate = new Date();
-
-// for (var i = 1; i < 357; i++) {
-//   const level = Math.floor(Math.random() * 3);
-//   const li = createElementNode(`<li data-level="${level}"></li>`);
-//   squares.append(li);
-// }
-
 async function getDatesInRange(startDate, endDate) {
   const date = new Date(startDate.getTime());
   const data = await fetchData(); // [2022-05-31, 3]
-
-  // const dateForCompare = data[0]; // 31.05.2022
-  // console.log(new Date(dateForCompare[0]).toLocaleDateString());
 
   const dates = [];
 
@@ -34,21 +36,39 @@ async function getDatesInRange(startDate, endDate) {
     const newData = new Date(date).toLocaleDateString(); // 26.10.2022
     const dateForCompare = splitString(newData); // 2022-05-31
     const item = Object.entries(data).find((element) => element[0] === dateForCompare);
+    let color = 0;
 
     if (item) {
-      // console.log(item);
+      switch (true) {
+        case item[1] >= 30:
+          color = 4;
+          break;
+
+        case item[1] >= 20:
+          color = 3;
+          break;
+
+        case item[1] >= 10:
+          color = 2;
+          break;
+
+        case item[1] >= 1:
+          color = 1;
+          break;
+
+        default:
+          color = 0;
+      }
     }
 
     dates.push(newData);
     date.setDate(date.getDate() + 1);
 
-    const li = createElementNode(`<li data-level="${data[dateForCompare]}"></li>`);
-    li.addEventListener('click', listener(item || newData));
+    const li = createElementNode(`<li data-level="${color}"></li>`);
+    li.addEventListener('click', listener({ data: item || [dateForCompare, 0], container: li }));
 
     squares.append(li);
   }
-
-  return dates;
 }
 
 const today = new Date();
@@ -57,34 +77,11 @@ const d2 = today;
 
 console.log(getDatesInRange(d1, d2));
 
-// ================================================================
-
-// const DAYS = () => {
-//   const days = [];
-//   const dateStart = moment().subtract(357 - 1, 'days');
-//   const dateEnd = moment();
-
-//   while (dateEnd.diff(dateStart, 'days') >= 0) {
-//     days.push(dateStart.format('D'));
-//     dateStart.add(1, 'days');
-//   }
-//   return days;
-// };
-
-// const availbableDays = DAYS();
-// console.log(availbableDays);
-
-// ==============================================================
-
-// for (var i = 1; i < 365; i++) {
-//   const level = Math.floor(Math.random() * 3);
-//   squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
-// }
-
 // Event listener
 function listener(data) {
   return function (evt) {
     console.log(data);
+    renderTooltip(data);
   };
 }
 
@@ -101,4 +98,26 @@ function splitString(dateString) {
 
   const date = dateString.split('.'); // [26, 10, 2022]
   return date.reverse().join('-');
+}
+
+function formatDateString(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = MONTHS[date.getMonth()];
+  const day = date.getDate();
+  const weekDay = DAYS[date.getDay() - 1];
+
+  return `${weekDay}, ${month} ${day}, ${year}`;
+}
+
+function renderTooltip({ container, data }) {
+  const tooltip = createElementNode(
+    `
+    <div class='tooltip'>
+      <p>${data[1]} contributions</>
+      <p>${formatDateString(data[0])}</>
+    </div>
+    `,
+  );
+  container.append(tooltip);
 }
