@@ -129,13 +129,9 @@ ul, ol {
 .tooltip {
   position: absolute;
   bottom: calc(15px + 6px);
-  /* left: -50%; */
   transform: translateX(calc(-50% + 7.5px));
-
-  /* max-width: 145px; */
   width: 145px;
-  height: 42px;
-  /* min-height: 42px; */
+  min-height: 42px;
   padding: 5px 9px;
   color: #fff;
   background-color: #000;
