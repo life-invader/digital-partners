@@ -105,8 +105,8 @@ ul, ol {
 /* Tooltip */
 .tooltip {
   position: absolute;
-  bottom: calc(15px + 6px);
-  transform: translateX(calc(-50% + 7.5px));
+  bottom: 21px;
+  transform: translateX(calc(-50% + 7.5px)) translateY(-100%);
   width: 145px;
   padding: 5px 9px;
   color: #fff;
@@ -114,6 +114,22 @@ ul, ol {
   text-align: center;
   border-radius: 3px;
   z-index: 10;
+
+  animation-name: tooltipAppear;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+/* Tooltip appear animation */
+@keyframes tooltipAppear {
+  0% {
+    transform: translateX(calc(-50% + 7.5px)) translateY(-100%);
+  }
+
+  100% {
+    transform: translateX(calc(-50% + 7.5px)) translateY(0);
+  }
 }
 
 .tooltip::after {
