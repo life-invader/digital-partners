@@ -22,3 +22,11 @@ export const DAYS = [
   'Пятница',
   'Суббота',
 ];
+
+export const ContributionNumber = {
+  0: 'No',
+  1: '1-9',
+  2: '10-19',
+  3: '20-29',
+  4: '30+',
+};

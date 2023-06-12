@@ -12,6 +12,10 @@ export function splitString(dateString) {
 }
 
 export function formatDateString(dateString) {
+  if (!dateString) {
+    return '';
+  }
+
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = MONTHS[date.getMonth()];
