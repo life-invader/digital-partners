@@ -1,4 +1,6 @@
-import { DAYS, MONTHS } from './constants';
+import { DAYS, LOCAL_MONTHS, MONTHS } from './constants';
+
+const months = document.querySelector('.months');
 
 export function createElementNode(string) {
   const div = document.createElement('div');
@@ -24,3 +26,13 @@ export function formatDateString(dateString) {
 
   return `${weekDay}, ${month} ${day}, ${year}`;
 }
+
+export const renderMonths = () => {
+  for (let i = 0; i < 12; i++) {
+    const currDate = new Date();
+    const prevMonthMSeconds = currDate.setMonth(currDate.getMonth() - i);
+    const currMonthNumber = new Date(prevMonthMSeconds).getMonth();
+
+    months.prepend(createElementNode(`<li>${LOCAL_MONTHS[currMonthNumber]}</li>`));
+  }
+};

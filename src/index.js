@@ -1,12 +1,9 @@
 import { fetchData } from './js/api';
-import { ContributionNumber } from './js/constants';
-import { createSquare } from './js/square';
-import { renderExampleTooltip, renderTooltip } from './js/tooltip';
-import { splitString } from './js/utils';
+import { createSquare, renderExampleSquares } from './js/square';
+import { renderMonths, splitString } from './js/utils';
 import './style.css';
 
 const squares = document.querySelector('.squares'); // squares container
-const exampleSquares = document.querySelectorAll('.examples__list .square');
 
 async function getDatesInRange(startDate, endDate) {
   const date = new Date(startDate.getTime());
@@ -54,9 +51,5 @@ const d1 = new Date(today.getTime() - 30758400000);
 const d2 = today;
 getDatesInRange(d1, d2);
 
-exampleSquares.forEach((item) => {
-  item.addEventListener('click', () => {
-    const numberOfContributions = ContributionNumber[item.dataset.color];
-    renderExampleTooltip(item, numberOfContributions);
-  });
-});
+renderExampleSquares();
+renderMonths();

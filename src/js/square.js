@@ -1,5 +1,8 @@
-import { renderTooltip } from './tooltip';
+import { ContributionNumber } from './constants';
+import { renderExampleTooltip, renderTooltip } from './tooltip';
 import { createElementNode } from './utils';
+
+const exampleSquares = document.querySelectorAll('.examples__list .square');
 
 export const squareClickHandler = (container, data) => {
   return function (_evt) {
@@ -12,4 +15,13 @@ export const createSquare = (color = 0, data) => {
   square.addEventListener('click', squareClickHandler(square, data));
 
   return square;
+};
+
+export const renderExampleSquares = () => {
+  exampleSquares.forEach((item) => {
+    item.addEventListener('click', () => {
+      const numberOfContributions = ContributionNumber[item.dataset.color];
+      renderExampleTooltip(item, numberOfContributions);
+    });
+  });
 };
