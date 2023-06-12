@@ -51,7 +51,8 @@ ul, ol {
   display: grid;
   grid-template-areas:
     "_ months"
-    "days squares";
+    "days squares"
+    "_1 bottom";
   grid-template-columns: auto 1fr;
   gap: 5px;
 
@@ -92,35 +93,35 @@ ul, ol {
   visibility: hidden;
 }
 
-.squares__item {
+.square {
   background-color: #EDEDED;
   outline: 1px solid transparent;
   position: relative;
   transition: all .2s;
 }
 
-.squares__item--active {
-  outline: 1px solid rgba(0, 0, 0, 0.9);
+.square:hover {
+  outline-color: rgba(0, 0, 0, 0.5);
 }
 
-.squares__item:hover {
-  outline: 1px solid rgba(0, 0, 0, 0.5);
+.square--active {
+  outline-color: rgba(0, 0, 0, 0.9);
 }
 
 /* Painting levels */
-.squares__item[data-color="1"] {
+.square[data-color="1"] {
   background-color: #ACD5F2;
 }
 
-.squares li[data-color="2"] {
+.square[data-color="2"] {
   background-color: #7FA8C9;
 }
 
-.squares li[data-color="3"] {
+.square[data-color="3"] {
   background-color: #527BA0;
 }
 
-.squares li[data-color="4"] {
+.square[data-color="4"] {
   background-color: #254E77;
 }
 
@@ -157,4 +158,20 @@ ul, ol {
   font-size: 10px;
   line-height: 12px;
   margin-top: 4px;
+}
+
+/* Examples */
+.examples {
+  grid-area: bottom;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.examples__list {
+
+  display: grid;
+  grid-template-columns: repeat(5, var(--square-size));
+  grid-template-rows: var(--square-size);
+  gap: 2px;
 }

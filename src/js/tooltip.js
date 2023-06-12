@@ -17,7 +17,7 @@ export const renderTooltip = (container, data) => {
 
   closeTooltip(container);
   container.append(node);
-  container.classList.add('squares__item--active');
+  container.classList.add('square--active');
   tooltip = node;
   document.body.addEventListener('click', tooltipBodyListener(container), { capture: true });
 
@@ -25,7 +25,7 @@ export const renderTooltip = (container, data) => {
 };
 
 export const closeTooltip = (container) => {
-  container.classList.remove('squares__item--active');
+  container.classList.remove('square--active');
   tooltip && tooltip.remove();
   tooltip = null;
   document.body.removeEventListener('click', tooltipBodyListener(container), { capture: true });
