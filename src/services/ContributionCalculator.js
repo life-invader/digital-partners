@@ -1,10 +1,10 @@
 /**
- * Сервис для расчета уровня вкладов
- * Отвечает за определение цвета квадрата на основе количества вкладов
+ * Сервис для расчета уровня контрибьютов
+ * Отвечает за определение цвета квадрата на основе количества контрибьютов
  */
 export class ContributionCalculator {
   /**
-   * Пороги для определения уровня вкладов
+   * Пороги для определения уровня контрибьютов
    */
   static get CONTRIBUTION_THRESHOLDS() {
     return {
@@ -16,9 +16,9 @@ export class ContributionCalculator {
   }
 
   /**
-   * Определяет уровень вкладов на основе количества
-   * @param {number} contributionCount - Количество вкладов
-   * @returns {number} Уровень вкладов (0-4)
+   * Определяет уровень контрибьютов на основе количества
+   * @param {number} contributionCount - Количество контрибьютов
+   * @returns {number} Уровень контрибьютов (0-4)
    */
   static calculateContributionLevel(contributionCount) {
     const { HIGH, MEDIUM, LOW, MINIMAL } = ContributionCalculator.CONTRIBUTION_THRESHOLDS;
@@ -32,8 +32,8 @@ export class ContributionCalculator {
   }
 
   /**
-   * Получает описание уровня вкладов
-   * @param {number} level - Уровень вкладов
+   * Получает описание уровня контрибьютов
+   * @param {number} level - Уровень контрибьютов
    * @returns {string} Описание уровня
    */
   static getContributionDescription(level) {

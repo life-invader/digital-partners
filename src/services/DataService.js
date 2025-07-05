@@ -1,13 +1,9 @@
-const API_URL = process.env.API_URL || 'https://dpg.gg/test/calendar.json';
-
 /**
  * Сервис для работы с данными
  * Отвечает за получение и обработку данных о вкладах
  */
 export class DataService {
-  constructor() {
-    this.apiUrl = API_URL;
-  }
+  apiUrl = process.env.API_URL || 'https://dpg.gg/test/calendar.json';
 
   /**
    * Получает данные о вкладах с сервера
@@ -32,7 +28,7 @@ export class DataService {
    * Находит данные для конкретной даты
    * @param {Object} data - Объект с данными о вкладах
    * @param {string} dateString - Дата в формате YYYY-MM-DD
-   * @returns {Array|null} Массив с датой и количеством вкладов или null
+   * @returns {Array|null} Массив с датой и количеством контрибьютов или null
    */
   findDataForDate(data, dateString) {
     return Object.entries(data).find(([date]) => date === dateString) || null;

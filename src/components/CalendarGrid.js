@@ -5,18 +5,18 @@ import { DomUtils } from '../utils/DomUtils.js';
 
 /**
  * Класс для управления сеткой календаря
- * Отвечает за создание и управление сеткой квадратов вкладов
+ * Отвечает за создание и управление сеткой квадратов контрибьютов
  */
 export class CalendarGrid {
-  /**
-   * @param {HTMLElement} container - Контейнер для сетки
-   * @param {HTMLElement} monthsContainer - Контейнер месяцев
-   */
-  constructor(container, monthsContainer) {
-    this.container = container;
-    this.monthsContainer = monthsContainer;
-    this.months = [];
-    this.squares = [];
+  selectors = {
+    squaresContainer: '.squares',
+    monthsContainer: '.months',
+  };
+
+  constructor() {
+    this.squaresContainer = document.querySelector(this.selectors.squaresContainer);
+    this.monthsContainer = document.querySelector(this.selectors.monthsContainer);
+
     this.dataService = null;
   }
 
@@ -47,19 +47,10 @@ export class CalendarGrid {
         ContributionCalculator.calculateContributionLevel(contributionCount);
 
       const square = new Square(contributionLevel, [dateString, contributionCount]);
-      const squareElement = square.createElement();
+      const squareElement = square.getElement();
 
-      this.container.appendChild(squareElement);
-      this.squares.push(square);
+      this.squaresContainer.appendChild(squareElement);
     }
-  }
-
-  /**
-   * Получает количество квадратов в сетке
-   * @returns {number} Количество квадратов
-   */
-  getSquareCount() {
-    return this.squares.length;
   }
 
   /**
@@ -74,7 +65,6 @@ export class CalendarGrid {
 
       const monthElement = this.createMonthElement(monthNumber);
       this.monthsContainer.prepend(monthElement);
-      this.months.push(monthElement);
     }
   }
 
@@ -88,13 +78,5 @@ export class CalendarGrid {
     DomUtils.addClass(monthElement, 'month');
 
     return monthElement;
-  }
-
-  /**
-   * Получает количество отображаемых месяцев
-   * @returns {number} Количество месяцев
-   */
-  getMonthsCount() {
-    return this.months.length;
   }
 }

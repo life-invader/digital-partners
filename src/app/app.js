@@ -1,13 +1,10 @@
-import { CalendarApp } from '../CalendarApp';
+import { CalendarApp } from '../components/CalendarApp';
 
 /**
  * Главная точка входа в приложение
  * Инициализирует и запускает календарь контрибьютов
  */
 export class App {
-  /**
-   * Конструктор приложения
-   */
   constructor() {
     this.calendarApp = null;
     this.isInitialized = false;
@@ -19,8 +16,8 @@ export class App {
   async initialize() {
     try {
       this.calendarApp = new CalendarApp();
-
       this.isInitialized = true;
+
       console.log('[App]: Приложение успешно запущено');
     } catch (error) {
       console.error('[App]: Ошибка при инициализации приложения:', error);

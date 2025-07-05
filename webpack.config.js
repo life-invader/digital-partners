@@ -17,7 +17,7 @@ module.exports = (_env, argv) => {
     mode,
     devtool: isDevMode && 'source-map',
     entry: {
-      bundle: path.resolve(__dirname, 'src/index.js'),
+      bundle: path.resolve(__dirname, 'src/app/index.js'),
     },
     output: {
       filename: 'js/[name].[contenthash].js',
