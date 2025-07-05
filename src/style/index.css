@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 /* Variables */
 :root {
   --square-size: 15px;
@@ -6,9 +8,12 @@
 }
 
 /* Common */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -17,14 +22,14 @@ body {
   line-height: 15px;
   font-weight: 400;
   color: #959494;
-
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -50,20 +55,21 @@ ul, ol {
 .graph {
   display: grid;
   grid-template-areas:
-    "_ months"
-    "days squares"
-    "_1 bottom";
+    '_ months'
+    'days squares'
+    '_1 bottom';
   grid-template-columns: auto 1fr;
   gap: 5px;
-
   padding: 20px;
   border: 1px #e1e4e8 solid;
+  width: 928px;
 }
 
 .months {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   justify-items: end;
+  min-height: 15px;
 }
 
 .days__item--hidden {
@@ -71,10 +77,10 @@ ul, ol {
 }
 
 .square {
-  background-color: #EDEDED;
+  background-color: #ededed;
   outline: 1px solid transparent;
   position: relative;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .square:hover {
@@ -86,20 +92,20 @@ ul, ol {
 }
 
 /* Painting levels */
-.square[data-color="1"] {
-  background-color: #ACD5F2;
+.square[data-color='1'] {
+  background-color: #acd5f2;
 }
 
-.square[data-color="2"] {
-  background-color: #7FA8C9;
+.square[data-color='2'] {
+  background-color: #7fa8c9;
 }
 
-.square[data-color="3"] {
-  background-color: #527BA0;
+.square[data-color='3'] {
+  background-color: #527ba0;
 }
 
-.square[data-color="4"] {
-  background-color: #254E77;
+.square[data-color='4'] {
+  background-color: #254e77;
 }
 
 /* Tooltip */
@@ -162,7 +168,6 @@ ul, ol {
 }
 
 .examples__list {
-
   display: grid;
   grid-template-columns: repeat(5, var(--square-size));
   grid-template-rows: var(--square-size);
