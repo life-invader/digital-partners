@@ -28,6 +28,8 @@ export class CalendarGrid {
     this.renderMonths();
     const dates = DateService.generateDateRange(startDate, endDate);
 
+    // Используем DocumentFragment для оптимизации рендера
+    const fragment = document.createDocumentFragment();
     for (const date of dates) {
       const dateString = DateService.formatDateToISO(date); // прим.: 2024-07-15
       const contributionInfo = this.findDataForDate(contributionData, dateString); // прим.: ['2024-07-15', 21]
@@ -39,8 +41,9 @@ export class CalendarGrid {
       const square = new Square(contributionLevel, [dateString, contributionCount]);
       const squareElement = square.getElement();
 
-      this.squaresContainer.appendChild(squareElement);
+      fragment.appendChild(squareElement);
     }
+    this.squaresContainer.appendChild(fragment);
   }
 
   /**
