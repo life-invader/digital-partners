@@ -23,14 +23,4 @@ export class DataService {
       return {};
     }
   }
-
-  /**
-   * Находит данные для конкретной даты
-   * @param {Object} data - Объект с данными о вкладах
-   * @param {string} dateString - Дата в формате YYYY-MM-DD
-   * @returns {Array|null} Массив с датой и количеством контрибьютов или null
-   */
-  findDataForDate(data, dateString) {
-    return Object.entries(data).find(([date]) => date === dateString) || null;
-  }
 }

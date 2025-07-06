@@ -28,9 +28,64 @@ body {
   align-items: center;
 }
 
+/* Loader */
+.loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: var(--colorBlackA50);
+  z-index: 10;
+}
+
+.loader::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 50px;
+  height: 50px;
+  border: 6px solid var(--colorAqua);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Graph */
+.graph {
+  display: grid;
+  grid-template-areas:
+    '_ months'
+    'days squares'
+    '_1 bottom';
+  grid-template-columns: auto 1fr;
+  gap: 5px;
+  padding: 20px;
+  border: 1px #e1e4e8 solid;
+  width: 928px;
+  position: relative;
+}
+
 .months {
   grid-area: months;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  justify-items: end;
+  min-height: 15px;
 }
 
 .days {
@@ -44,26 +99,6 @@ body {
   grid-template-rows: repeat(7, var(--squareSize));
   grid-auto-flow: column;
   grid-auto-columns: var(--squareSize);
-}
-
-.graph {
-  display: grid;
-  grid-template-areas:
-    '_ months'
-    'days squares'
-    '_1 bottom';
-  grid-template-columns: auto 1fr;
-  gap: 5px;
-  padding: 20px;
-  border: 1px #e1e4e8 solid;
-  width: 928px;
-}
-
-.months {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  justify-items: end;
-  min-height: 15px;
 }
 
 .days__item--hidden {

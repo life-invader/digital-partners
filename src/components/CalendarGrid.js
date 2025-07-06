@@ -16,16 +16,6 @@ export class CalendarGrid {
   constructor() {
     this.squaresContainer = document.querySelector(this.selectors.squaresContainer);
     this.monthsContainer = document.querySelector(this.selectors.monthsContainer);
-
-    this.dataService = null;
-  }
-
-  /**
-   * Устанавливает сервис данных
-   * @param {Object} dataService - Сервис для работы с данными
-   */
-  setDataService(dataService) {
-    this.dataService = dataService;
   }
 
   /**
@@ -40,7 +30,7 @@ export class CalendarGrid {
 
     for (const date of dates) {
       const dateString = DateService.formatDateToISO(date); // прим.: 2024-07-15
-      const contributionInfo = this.dataService?.findDataForDate(contributionData, dateString); // прим.: ['2024-07-15', 21]
+      const contributionInfo = this.findDataForDate(contributionData, dateString); // прим.: ['2024-07-15', 21]
 
       const contributionCount = contributionInfo ? contributionInfo[1] : 0;
       const contributionLevel =
@@ -51,6 +41,16 @@ export class CalendarGrid {
 
       this.squaresContainer.appendChild(squareElement);
     }
+  }
+
+  /**
+   * Находит данные для конкретной даты
+   * @param {Object} data - Объект с данными о вкладах
+   * @param {string} dateString - Дата в формате YYYY-MM-DD
+   * @returns {Array|null} Массив с датой и количеством контрибьютов или null
+   */
+  findDataForDate(data, dateString) {
+    return Object.entries(data).find(([date]) => date === dateString) || null;
   }
 
   /**

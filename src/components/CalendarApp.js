@@ -8,6 +8,8 @@ import { DAYS_365_MS } from '../constants/index';
  */
 export class CalendarApp {
   constructor() {
+    this.loader = document.querySelector('.loader');
+
     this.dataService = new DataService(); // API-сервис
     this.calendarGrid = new CalendarGrid(); // Класс основной карты контрибьютов
     this.exampleSquaresRenderer = new ExampleSquaresRenderer(); // Класс примеров контрибьютов (меньше / больше)
@@ -22,7 +24,6 @@ export class CalendarApp {
   async init() {
     try {
       await this.loadContributionData(); // загрузка контрибьютов по api
-      this.calendarGrid.setDataService(this.dataService); // передача API-сервиса
       this.createCalendar(); // создание карты контрибьютов
 
       console.log('[CalendarApp]: Приложение календаря успешно инициализировано');
@@ -40,6 +41,8 @@ export class CalendarApp {
     } catch (error) {
       console.error('[CalendarApp]: Ошибка при загрузке данных о вкладах:', error);
     }
+
+    this.removeLoader();
   }
 
   /**
@@ -51,5 +54,9 @@ export class CalendarApp {
     const endDate = today;
 
     this.calendarGrid.createGrid(startDate, endDate, this.contributionData);
+  }
+
+  removeLoader() {
+    this.loader.remove();
   }
 }
