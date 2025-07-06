@@ -64,7 +64,7 @@ module.exports = (_env, argv) => {
       ],
     },
     optimization: {
-      minimizer: [new CssMinimizerPlugin()],
+      minimizer: ['...', new CssMinimizerPlugin()],
     },
     resolve: {
       alias: {
