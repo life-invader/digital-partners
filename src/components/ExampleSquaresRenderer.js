@@ -38,7 +38,7 @@ export class ExampleSquaresRenderer {
    * @param {string} description - Описание уровня вкладов
    */
   showExampleTooltip(square, contributionCount) {
-    const event = new CustomEvent('tooltip:show', {
+    const event = new CustomEvent(Tooltip.eventNames.show, {
       bubbles: true,
       detail: { contributionCount },
     });

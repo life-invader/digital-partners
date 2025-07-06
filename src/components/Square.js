@@ -61,16 +61,17 @@ export class Square {
    */
   showTooltip() {
     const [date] = this.contributionData;
+    const square = this.getElement();
 
     const formattedDate = DateService.formatDateForDisplay(date); // Прим.: Понедельник, December 16, 2024
     const contributionCount = ContributionCalculator.getContributionDescription(
       this.contributionLevel,
     );
 
-    const event = new CustomEvent('tooltip:show', {
+    const event = new CustomEvent(Tooltip.eventNames.show, {
       bubbles: true,
-      detail: { square: this.getElement(), contributionCount, date: formattedDate },
+      detail: { contributionCount, date: formattedDate },
     });
-    this.getElement().dispatchEvent(event);
+    square.dispatchEvent(event);
   }
 }

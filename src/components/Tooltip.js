@@ -10,6 +10,11 @@ const getTooltipMarkup = (contributionCount, date = '') => {
 };
 
 export class Tooltip {
+  static eventNames = {
+    show: 'tooltip:show',
+    click: 'click',
+  };
+
   selectors = {
     square: '.square',
   };
@@ -23,8 +28,8 @@ export class Tooltip {
   }
 
   init() {
-    document.addEventListener('tooltip:show', this.squareClickHandler);
-    document.addEventListener('click', this.documentClickHandler);
+    document.addEventListener(Tooltip.eventNames.show, this.squareClickHandler);
+    document.addEventListener(Tooltip.eventNames.click, this.documentClickHandler);
   }
 
   documentClickHandler = (evt) => {
