@@ -66,5 +66,15 @@ module.exports = (_env, argv) => {
     optimization: {
       minimizer: [new CssMinimizerPlugin()],
     },
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components/'),
+        '@services': path.resolve(__dirname, 'src/services/'),
+        '@utils': path.resolve(__dirname, 'src/utils/'),
+        '@constants': path.resolve(__dirname, 'src/constants/'),
+        '@app': path.resolve(__dirname, 'src/app/'),
+      },
+      extensions: ['.js'],
+    },
   };
 };

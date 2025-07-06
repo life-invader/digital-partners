@@ -1,6 +1,6 @@
-import { ContributionCalculator } from '../services/ContributionCalculator.js';
-import { DateService } from '../services/DateService.js';
-import { DomUtils } from '../utils/DomUtils.js';
+import { ContributionCalculator } from '@services/ContributionCalculator.js';
+import { DateService } from '@services/DateService.js';
+import { DomUtils } from '@utils/DomUtils.js';
 import { Tooltip } from './Tooltip.js';
 
 /**

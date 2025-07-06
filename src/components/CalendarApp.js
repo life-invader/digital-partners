@@ -1,7 +1,7 @@
+import { DataService } from '@services/DataService';
+import { DAYS_365_MS } from '@constants/index';
 import { CalendarGrid } from './CalendarGrid';
 import { ExampleSquaresRenderer } from './ExampleSquaresRenderer';
-import { DataService } from '../services/DataService';
-import { DAYS_365_MS } from '../constants/index';
 
 /**
  * Главный класс приложения календаря контрибьютов

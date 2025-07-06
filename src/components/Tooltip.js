@@ -1,4 +1,4 @@
-import { DomUtils } from '../utils/DomUtils';
+import { DomUtils } from '@utils/DomUtils.js';
 
 export class Tooltip {
   static eventNames = {

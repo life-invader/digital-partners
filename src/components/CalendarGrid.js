@@ -1,7 +1,7 @@
+import { ContributionCalculator } from '@services/ContributionCalculator.js';
+import { DateService } from '@services/DateService.js';
+import { DomUtils } from '@utils/DomUtils.js';
 import { Square } from './Square.js';
-import { ContributionCalculator } from '../services/ContributionCalculator.js';
-import { DateService } from '../services/DateService.js';
-import { DomUtils } from '../utils/DomUtils.js';
 
 /**
  * Класс для управления сеткой календаря

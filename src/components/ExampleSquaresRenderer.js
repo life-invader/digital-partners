@@ -1,4 +1,4 @@
-import { ContributionCalculator } from '../services/ContributionCalculator.js';
+import { ContributionCalculator } from '@services/ContributionCalculator.js';
 import { Tooltip } from './Tooltip.js';
 
 /**

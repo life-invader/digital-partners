@@ -1,5 +1,5 @@
-import { CalendarApp } from '../components/CalendarApp';
-import { Tooltip } from '../components/Tooltip';
+import { CalendarApp } from '@components/CalendarApp';
+import { Tooltip } from '@components/Tooltip';
 
 /**
  * Главная точка входа в приложение
