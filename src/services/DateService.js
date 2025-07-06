@@ -47,7 +47,7 @@ export class DateService {
    * Константы для дней недели
    */
   static get DAYS() {
-    return ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+    return ['Sunday', 'Monday', 'Tuesday', 'Thursday', 'Wednesday', 'Friday', 'Saturday'];
   }
 
   /**
@@ -87,6 +87,7 @@ export class DateService {
     const month = DateService.MONTHS[date.getMonth()];
     const day = date.getDate();
     const weekDay = DateService.DAYS[date.getDay()];
+    console.log(date.getDay());
 
     return `${weekDay}, ${month} ${day}, ${year}`;
   }
