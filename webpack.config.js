@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const MODE = {
   development: 'development',
@@ -16,7 +17,7 @@ module.exports = (_env, argv) => {
     mode,
     devtool: isDevMode && 'source-map',
     entry: {
-      bundle: path.resolve(__dirname, 'src/index.js'),
+      bundle: path.resolve(__dirname, 'src/app/index.js'),
     },
     output: {
       filename: 'js/[name].[contenthash].js',
@@ -34,6 +35,7 @@ module.exports = (_env, argv) => {
       historyApiFallback: true,
     },
     plugins: [
+      new Dotenv(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/index.html',

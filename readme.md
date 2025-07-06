@@ -1,14 +1,11 @@
-# Тестовое задание джуна в Digital Partners Global
-ТЗ - [Тык](https://drive.google.com/file/d/1PrDD39p-Ugam1Y3BQMWlfxlRZ0BH7Mgx/view?usp=sharing)
-Деплой на [Vercel](https://digital-partners-puce.vercel.app)
+# Тестовое задание Frontend разработчик в Digital Partners Global
+Приложение для отображения календаря контрибьютов в стиле GitHub
 
-#### Запуск `npm start`
-#### Сборка `npm run build:prod`
+## Запуск
+```bash
+npm install
+npm start
+```
 
-#### Описание
-- Почти доделано
-  
-#### Что еще можно сделать
-- Облегчить сборку webpack, выкинуть лишнее
-- Переписать на ООП
-- Может и еще чего
+## Архитектура
+Проект построен на принципах SOLID и объектно-ориентированного программирования

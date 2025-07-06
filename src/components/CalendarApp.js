@@ -1,0 +1,55 @@
+import { CalendarGrid } from './CalendarGrid';
+import { ExampleSquaresRenderer } from './ExampleSquaresRenderer';
+import { DataService } from '../services/DataService';
+import { DAYS_365_MS } from '../constants/index';
+
+/**
+ * Главный класс приложения календаря контрибьютов
+ */
+export class CalendarApp {
+  constructor() {
+    this.dataService = new DataService(); // API-сервис
+    this.calendarGrid = new CalendarGrid(); // Класс основной карты контрибьютов
+    this.exampleSquaresRenderer = new ExampleSquaresRenderer(); // Класс примеров контрибьютов (меньше / больше)
+    this.contributionData = {};
+
+    this.init();
+  }
+
+  /**
+   * Инициализирует работу класса
+   */
+  async init() {
+    try {
+      await this.loadContributionData(); // загрузка контрибьютов по api
+      this.calendarGrid.setDataService(this.dataService); // передача API-сервиса
+      this.createCalendar(); // создание карты контрибьютов
+
+      console.log('[CalendarApp]: Приложение календаря успешно инициализировано');
+    } catch (error) {
+      console.error('[CalendarApp]: Ошибка при инициализации приложения:', error);
+    }
+  }
+
+  /**
+   * Загружает данные о контрибьютах
+   */
+  async loadContributionData() {
+    try {
+      this.contributionData = await this.dataService.fetchContributionData();
+    } catch (error) {
+      console.error('[CalendarApp]: Ошибка при загрузке данных о вкладах:', error);
+    }
+  }
+
+  /**
+   * Создает карту контрибьютов
+   */
+  createCalendar() {
+    const today = new Date();
+    const startDate = new Date(today.getTime() - DAYS_365_MS); // 356 дней назад
+    const endDate = today;
+
+    this.calendarGrid.createGrid(startDate, endDate, this.contributionData);
+  }
+}

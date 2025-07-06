@@ -1,31 +1,31 @@
-/* Variables */
-:root {
-  --square-size: 15px;
-  --square-gap: 2px;
-  --week-width: calc(var(--square-size) + var(--square-gap));
+@import './fonts.css';
+@import './vars.css';
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 /* Common */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--fontInter);
   font-size: 12px;
-  line-height: 15px;
+  line-height: 1.25;
   font-weight: 400;
-  color: #959494;
-
+  color: var(--colorDustyGray);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-ul, ol {
-  list-style: none;
 }
 
 /* Graph */
@@ -39,31 +39,31 @@ ul, ol {
 
 .squares {
   grid-area: squares;
-
   display: grid;
   gap: 2px;
-  grid-template-rows: repeat(7, var(--square-size));
+  grid-template-rows: repeat(7, var(--squareSize));
   grid-auto-flow: column;
-  grid-auto-columns: var(--square-size);
+  grid-auto-columns: var(--squareSize);
 }
 
 .graph {
   display: grid;
   grid-template-areas:
-    "_ months"
-    "days squares"
-    "_1 bottom";
+    '_ months'
+    'days squares'
+    '_1 bottom';
   grid-template-columns: auto 1fr;
   gap: 5px;
-
   padding: 20px;
   border: 1px #e1e4e8 solid;
+  width: 928px;
 }
 
 .months {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   justify-items: end;
+  min-height: 15px;
 }
 
 .days__item--hidden {
@@ -71,35 +71,35 @@ ul, ol {
 }
 
 .square {
-  background-color: #EDEDED;
+  background-color: var(--colorGallery);
   outline: 1px solid transparent;
   position: relative;
-  transition: all .2s;
+  transition: outline-color 0.2s;
 }
 
 .square:hover {
-  outline-color: rgba(0, 0, 0, 0.5);
+  outline-color: var(--colorBlackA50);
 }
 
 .square--active {
-  outline-color: rgba(0, 0, 0, 0.9);
+  outline-color: var(--colorBlackA90);
 }
 
 /* Painting levels */
-.square[data-color="1"] {
-  background-color: #ACD5F2;
+.square[data-color='1'] {
+  background-color: var(--colorPerano);
 }
 
-.square[data-color="2"] {
-  background-color: #7FA8C9;
+.square[data-color='2'] {
+  background-color: var(--colorGlacier);
 }
 
-.square[data-color="3"] {
-  background-color: #527BA0;
+.square[data-color='3'] {
+  background-color: var(--colorWedgewood);
 }
 
-.square[data-color="4"] {
-  background-color: #254E77;
+.square[data-color='4'] {
+  background-color: var(--colorAstronaut);
 }
 
 /* Tooltip */
@@ -107,10 +107,11 @@ ul, ol {
   position: absolute;
   bottom: 21px;
   transform: translateX(calc(-50% + 7.5px)) translateY(-100%);
-  width: 145px;
+  min-width: 145px;
+  max-width: 200px;
   padding: 5px 9px;
-  color: #fff;
-  background-color: #000;
+  color: var(--colorWhite);
+  background-color: var(--colorBlack);
   text-align: center;
   border-radius: 3px;
   z-index: 10;
@@ -140,14 +141,13 @@ ul, ol {
   left: 50%;
   bottom: -6px;
   transform: translateX(-50%);
-
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 6px solid #000;
+  border-top: 6px solid var(--colorBlack);
 }
 
 .tooltip__date {
-  color: #7c7c7c;
+  color: var(--colorBoulder);
   font-size: 10px;
   line-height: 12px;
   margin-top: 4px;
@@ -162,9 +162,8 @@ ul, ol {
 }
 
 .examples__list {
-
   display: grid;
-  grid-template-columns: repeat(5, var(--square-size));
-  grid-template-rows: var(--square-size);
+  grid-template-columns: repeat(5, var(--squareSize));
+  grid-template-rows: var(--squareSize);
   gap: 2px;
 }
