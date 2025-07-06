@@ -21,7 +21,7 @@ export class CalendarApp {
    */
   async init() {
     try {
-      await this.loadContributionData(); // загрузка контрибьютов
+      await this.loadContributionData(); // загрузка контрибьютов по api
       this.calendarGrid.setDataService(this.dataService); // передача API-сервиса
       this.createCalendar(); // создание карты контрибьютов
 

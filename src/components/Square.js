@@ -1,6 +1,7 @@
 import { ContributionCalculator } from '../services/ContributionCalculator.js';
 import { DateService } from '../services/DateService.js';
 import { DomUtils } from '../utils/DomUtils.js';
+import { Tooltip } from './Tooltip.js';
 
 /**
  * Класс для представления квадрата контрибьюта
@@ -51,7 +52,7 @@ export class Square {
    * Обработчик клика по квадрату
    * @param {Event} event - Событие клика
    */
-  handleClick = (event) => {
+  handleClick = () => {
     this.showTooltip();
   };
 
@@ -59,13 +60,13 @@ export class Square {
    * Показывает подсказку с информацией о вкладах
    */
   showTooltip() {
-    if (!this.element) return;
+    const [date] = this.contributionData;
 
-    const [date, count] = this.contributionData;
-    const formattedDate = DateService.formatDateForDisplay(date);
-    const description = ContributionCalculator.getContributionDescription(this.contributionLevel);
+    const formattedDate = DateService.formatDateForDisplay(date); // Прим.: Понедельник, December 16, 2024
+    const contributionCount = ContributionCalculator.getContributionDescription(
+      this.contributionLevel,
+    );
 
-    // Здесь можно добавить логику отображения tooltip
-    console.log(`Дата: ${formattedDate}, Вклады: ${count}, Уровень: ${description}`);
+    Tooltip.showTooltip(this.getElement(), { contributionCount, date: formattedDate });
   }
 }

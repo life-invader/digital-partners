@@ -1,4 +1,5 @@
 import { ContributionCalculator } from '../services/ContributionCalculator.js';
+import { Tooltip } from './Tooltip.js';
 
 /**
  * Класс для отображения примеров квадратов
@@ -26,9 +27,9 @@ export class ExampleSquaresRenderer {
   squareClickHandler = (evt) => {
     const { currentTarget } = evt;
 
-    const colorLevel = parseInt(currentTarget.dataset.color) || 0;
-    const contributionDescription = ContributionCalculator.getContributionDescription(colorLevel);
-    this.showExampleTooltip(currentTarget, contributionDescription);
+    const colorLevel = parseInt(currentTarget.dataset.color) || 0; // 0 - 4
+    const contributionCount = ContributionCalculator.getContributionDescription(colorLevel);
+    this.showExampleTooltip(currentTarget, contributionCount);
   };
 
   /**
@@ -36,8 +37,7 @@ export class ExampleSquaresRenderer {
    * @param {HTMLElement} square - Элемент квадрата
    * @param {string} description - Описание уровня вкладов
    */
-  showExampleTooltip(square, description) {
-    // Здесь можно добавить логику отображения tooltip для примера
-    console.log(`Пример квадрата: ${description} вкладов`);
+  showExampleTooltip(square, contributionCount) {
+    Tooltip.showTooltip(square, { contributionCount });
   }
 }

@@ -39,12 +39,12 @@ export class CalendarGrid {
     const dates = DateService.generateDateRange(startDate, endDate);
 
     for (const date of dates) {
-      const dateString = DateService.formatDateToISO(date);
-      const contributionInfo = this.dataService?.findDataForDate(contributionData, dateString);
+      const dateString = DateService.formatDateToISO(date); // прим.: 2024-07-15
+      const contributionInfo = this.dataService?.findDataForDate(contributionData, dateString); // прим.: ['2024-07-15', 21]
 
       const contributionCount = contributionInfo ? contributionInfo[1] : 0;
       const contributionLevel =
-        ContributionCalculator.calculateContributionLevel(contributionCount);
+        ContributionCalculator.calculateContributionLevel(contributionCount); // 0 - 4
 
       const square = new Square(contributionLevel, [dateString, contributionCount]);
       const squareElement = square.getElement();

@@ -6,7 +6,7 @@ import './style/index.css';
  */
 async function startApp() {
   const app = new App();
-  await app.initialize();
+  await app.init();
 
   window.calendarApp = app;
 }

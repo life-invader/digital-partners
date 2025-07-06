@@ -13,7 +13,7 @@ export class App {
   /**
    * Инициализирует приложение
    */
-  async initialize() {
+  async init() {
     try {
       this.calendarApp = new CalendarApp();
       this.isInitialized = true;

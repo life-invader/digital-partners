@@ -113,7 +113,8 @@ ol {
   position: absolute;
   bottom: 21px;
   transform: translateX(calc(-50% + 7.5px)) translateY(-100%);
-  width: 145px;
+  min-width: 145px;
+  max-width: 200px;
   padding: 5px 9px;
   color: #fff;
   background-color: #000;
