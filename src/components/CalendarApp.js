@@ -10,7 +10,7 @@ export class CalendarApp {
   constructor() {
     this.dataService = new DataService(); // API-сервис
     this.calendarGrid = new CalendarGrid(); // Класс основной карты контрибьютов
-    this.exampleSquaresRenderer = new ExampleSquaresRenderer(); // Класс примеров контрибьютов
+    this.exampleSquaresRenderer = new ExampleSquaresRenderer(); // Класс примеров контрибьютов (меньше / больше)
     this.contributionData = {};
 
     this.init();
