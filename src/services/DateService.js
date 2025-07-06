@@ -87,7 +87,6 @@ export class DateService {
     const month = DateService.MONTHS[date.getMonth()];
     const day = date.getDate();
     const weekDay = DateService.DAYS[date.getDay()];
-    console.log(date.getDay());
 
     return `${weekDay}, ${month} ${day}, ${year}`;
   }

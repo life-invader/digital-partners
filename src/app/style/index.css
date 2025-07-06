@@ -28,6 +28,10 @@ body {
   align-items: center;
 }
 
+time {
+  display: block;
+}
+
 /* Loader */
 .loader {
   width: 100%;

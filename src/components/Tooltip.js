@@ -1,14 +1,5 @@
 import { DomUtils } from '../utils/DomUtils';
 
-const getTooltipMarkup = (contributionCount, date = '') => {
-  return `
-      <div class='tooltip'>
-        <p class='tooltip__text'>${contributionCount} contributions</>
-        ${date && `<p class='tooltip__date'>${date}</>`}
-      </div>
-      `;
-};
-
 export class Tooltip {
   static eventNames = {
     show: 'tooltip:show',
@@ -50,10 +41,12 @@ export class Tooltip {
       return;
     }
 
-    const { contributionCount, date = '' } = data;
+    const { contributionCount, date = '', datetime = '' } = data;
     this.hideTooltip();
 
-    const node = DomUtils.createElementFromString(getTooltipMarkup(contributionCount, date));
+    const node = DomUtils.createElementFromString(
+      this.getTooltipMarkup(contributionCount, date, datetime),
+    );
     container.append(node);
     this.saveTooltip({ container, element: node });
 
@@ -74,5 +67,14 @@ export class Tooltip {
     this.currentTooltip = {
       ...cfg,
     };
+  }
+
+  getTooltipMarkup(contributionCount, date = '', datetime = '') {
+    return `
+        <div class='tooltip'>
+          <p class='tooltip__text'>${contributionCount} contributions</p>
+          ${date && `<time class='tooltip__date' datetime="${datetime}">${date}</time>`}
+        </div>
+        `;
   }
 }

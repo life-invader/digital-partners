@@ -20,14 +20,21 @@ export class Square {
   }
 
   /**
-   * Создает DOM-элемент квадрата
+   * Создает DOM-элемент квадрата с aria-атрибутами для доступности
    * @returns {HTMLLIElement} Элемент квадрата
    */
   createElement() {
-    const squareElement = DomUtils.createElement('li', {
-      'data-color': this.contributionLevel.toString(),
-    });
-    DomUtils.addClass(squareElement, 'square');
+    const [date] = this.contributionData;
+    const formattedDate = DateService.formatDateForDisplay(date);
+    const contributionCount = ContributionCalculator.getContributionDescription(
+      this.contributionLevel,
+    );
+    const contributionLevel = this.contributionLevel.toString();
+    const ariaLabel = `${contributionCount} contributions, ${formattedDate}`;
+
+    const squareElement = DomUtils.createElementFromString(
+      this.getSquareMarkup(contributionLevel, ariaLabel),
+    );
 
     this.element = squareElement;
     this.attachEventListeners();
@@ -70,8 +77,14 @@ export class Square {
 
     const event = new CustomEvent(Tooltip.eventNames.show, {
       bubbles: true,
-      detail: { contributionCount, date: formattedDate },
+      detail: { contributionCount, date: formattedDate, datetime: date },
     });
     square.dispatchEvent(event);
+  }
+
+  getSquareMarkup(contributionLevel, ariaLabel) {
+    return `
+      <li data-color="${contributionLevel}" role="button" tabindex="0" aria-label="${ariaLabel}" class="square"></li>
+    `;
   }
 }
