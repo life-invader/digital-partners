@@ -84,7 +84,7 @@ export class Square {
 
   getSquareMarkup(contributionLevel, ariaLabel) {
     return `
-      <li data-color="${contributionLevel}" role="button" tabindex="0" aria-label="${ariaLabel}" class="square"></li>
+      <li data-color="${contributionLevel}" tabindex="0" aria-label="${ariaLabel}" class="square"></li>
     `;
   }
 }
