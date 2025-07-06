@@ -1,4 +1,5 @@
 import { CalendarApp } from '../components/CalendarApp';
+import { Tooltip } from '../components/Tooltip';
 
 /**
  * Главная точка входа в приложение
@@ -16,6 +17,7 @@ export class App {
   async init() {
     try {
       this.calendarApp = new CalendarApp();
+      this.tooltipPlugin = new Tooltip();
       this.isInitialized = true;
 
       console.log('[App]: Приложение успешно запущено');

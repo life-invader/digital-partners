@@ -67,6 +67,10 @@ export class Square {
       this.contributionLevel,
     );
 
-    Tooltip.showTooltip(this.getElement(), { contributionCount, date: formattedDate });
+    const event = new CustomEvent('tooltip:show', {
+      bubbles: true,
+      detail: { square: this.getElement(), contributionCount, date: formattedDate },
+    });
+    this.getElement().dispatchEvent(event);
   }
 }

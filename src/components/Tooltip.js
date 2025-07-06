@@ -10,12 +10,64 @@ const getTooltipMarkup = (contributionCount, date = '') => {
 };
 
 export class Tooltip {
-  static showTooltip(container, data) {
+  selectors = {
+    square: '.square',
+  };
+
+  constructor() {
+    this.currentTooltip = {
+      container: null,
+      element: null,
+    };
+    this.init();
+  }
+
+  init() {
+    document.addEventListener('tooltip:show', this.squareClickHandler);
+    document.addEventListener('click', this.documentClickHandler);
+  }
+
+  documentClickHandler = (evt) => {
+    const { target } = evt;
+
+    if (!target.closest(this.selectors.square)) {
+      this.hideTooltip();
+    }
+  };
+
+  squareClickHandler = (evt) => {
+    const { target, detail } = evt;
+    this.showTooltip(target, detail);
+  };
+
+  showTooltip(container, data) {
+    if (this.currentTooltip.container === container) {
+      return;
+    }
+
     const { contributionCount, date = '' } = data;
+    this.hideTooltip();
 
     const node = DomUtils.createElementFromString(getTooltipMarkup(contributionCount, date));
     container.append(node);
+    this.saveTooltip({ container, element: node });
 
     return node;
+  }
+
+  hideTooltip() {
+    const { element } = this.currentTooltip;
+    element && element.remove();
+
+    this.currentTooltip = {
+      container: null,
+      element: null,
+    };
+  }
+
+  saveTooltip(cfg) {
+    this.currentTooltip = {
+      ...cfg,
+    };
   }
 }

@@ -3,7 +3,7 @@ import { Tooltip } from './Tooltip.js';
 
 /**
  * Класс для отображения примеров квадратов
- * Отвечает за создание и управление примерами квадратов вкладов
+ * Отвечает за создание и управление примерами квадратов контрибьютов
  */
 export class ExampleSquaresRenderer {
   selectors = {
@@ -38,6 +38,10 @@ export class ExampleSquaresRenderer {
    * @param {string} description - Описание уровня вкладов
    */
   showExampleTooltip(square, contributionCount) {
-    Tooltip.showTooltip(square, { contributionCount });
+    const event = new CustomEvent('tooltip:show', {
+      bubbles: true,
+      detail: { contributionCount },
+    });
+    square.dispatchEvent(event);
   }
 }
